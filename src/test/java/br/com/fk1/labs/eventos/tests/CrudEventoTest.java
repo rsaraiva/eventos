@@ -13,7 +13,7 @@ public class CrudEventoTest {
     
     @Test
     public void testaConexao() {
-        factory = Persistence.createEntityManagerFactory("eventos");
+        factory = Persistence.createEntityManagerFactory("eventos_test");
         EntityManager em = factory.createEntityManager();
         assertNotNull(em);
         em.close();
@@ -41,5 +41,23 @@ public class CrudEventoTest {
         assertNotNull(emFind.find(Evento.class, 100));
         
         emFind.close();
+    }
+    
+    @Test
+    public void testaAlteracao() {
+        String novoEvento = "Monters of Rock!";
+        
+        EntityManager em = factory.createEntityManager();
+        Evento evento = em.find(Evento.class, 100);
+        evento.setNome(novoEvento);
+        em.getTransaction().begin();
+        em.merge(evento);
+        em.getTransaction().commit();
+        em.close();
+        
+        EntityManager emTest = factory.createEntityManager();
+        Evento eventoAlterado = emTest.find(Evento.class, 100);
+        assertTrue(eventoAlterado.getNome().equals(novoEvento));
+        emTest.close();
     }
 }

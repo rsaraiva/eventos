@@ -2,15 +2,28 @@ package br.com.fk1.labs.eventos.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Evento implements Serializable {
+public class Pessoa implements Serializable {
     
     @Id
     private Integer id;
     
     private String nome;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Endereco endereco;
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
     public Integer getId() {
         return id;
@@ -27,9 +40,5 @@ public class Evento implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    @Override
-    public String toString() {
-        return "Evento com id " + id + " e nome " + nome;
-    }
+    
 }

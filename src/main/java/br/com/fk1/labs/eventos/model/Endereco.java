@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Evento implements Serializable {
+public class Endereco implements Serializable {
     
     @Id
     private Integer id;
     
-    private String nome;
+    private String endereco;
 
     public Integer getId() {
         return id;
@@ -20,16 +20,11 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public String toString() {
-        return "Evento com id " + id + " e nome " + nome;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 }
