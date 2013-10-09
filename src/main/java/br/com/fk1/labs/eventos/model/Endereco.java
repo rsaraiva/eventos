@@ -1,10 +1,8 @@
 package br.com.fk1.labs.eventos.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Endereco implements Serializable {
@@ -13,9 +11,6 @@ public class Endereco implements Serializable {
     private Integer id;
     
     private String endereco;
-    
-    @ManyToMany(mappedBy = "enderecos")
-    private List<Pessoa> pessoas;
 
     public Integer getId() {
         return id;
@@ -31,13 +26,5 @@ public class Endereco implements Serializable {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public List<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
     }
 }
