@@ -6,17 +6,21 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Evento implements Serializable {
+public class Pessoa implements Serializable {
     
     @Id
     private Integer id;
     
     private String nome;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Pessoa> pessoas;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Endereco endereco;
+    
+    @ManyToMany(mappedBy = "pessoas", fetch = FetchType.LAZY)
+    private List<Evento> eventos;
 
     public Integer getId() {
         return id;
@@ -34,16 +38,19 @@ public class Evento implements Serializable {
         this.nome = nome;
     }
 
-    public List<Pessoa> getPessoas() {
-        return pessoas;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
-    @Override
-    public String toString() {
-        return "Evento com id " + id + " e nome " + nome;
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
     }
 }

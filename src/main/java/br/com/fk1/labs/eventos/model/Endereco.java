@@ -3,19 +3,18 @@ package br.com.fk1.labs.eventos.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Evento implements Serializable {
+public class Endereco implements Serializable {
     
     @Id
     private Integer id;
     
-    private String nome;
+    private String endereco;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "enderecos")
     private List<Pessoa> pessoas;
 
     public Integer getId() {
@@ -26,12 +25,12 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public List<Pessoa> getPessoas() {
@@ -40,10 +39,5 @@ public class Evento implements Serializable {
 
     public void setPessoas(List<Pessoa> pessoas) {
         this.pessoas = pessoas;
-    }
-
-    @Override
-    public String toString() {
-        return "Evento com id " + id + " e nome " + nome;
     }
 }
