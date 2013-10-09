@@ -65,5 +65,4 @@ public class CrudEventoTest {
         assertTrue(eventoAlterado.getNome().equals(novoEvento));
         emTest.close();
     }
-    
 }
